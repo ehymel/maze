@@ -9,7 +9,7 @@ class Node {
     show() {
         let i = this.i * w;
         let j = this.j * h;
-        let offset = 1;
+        let offset = 0;
         stroke(0);
         strokeWeight(1);
 
@@ -35,6 +35,12 @@ class Node {
             fill(255, 0, 255, 80);
             rect(this.i * w, this.j * h, w, h);
         }
+    }
+
+    highlight() {
+        noStroke();
+        fill(0, 255, 0, 80);
+        rect(this.i * w, this.j * h, w, h);
     }
 
     getUnvisitedNeighbor() {

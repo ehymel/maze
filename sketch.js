@@ -1,10 +1,9 @@
-let cols = 10;
-let rows = 10;
+let cols = 30;
+let rows = 30;
 let grid = [];
 let current;
-let start, end;
 let w, h;
-let search = false;
+let stack = [];
 
 function setup() {
     createCanvas(400, 400);
@@ -25,18 +24,10 @@ function setup() {
     }
 
     current = grid[0][0];
-
-    // set start and end nodes
-    start = grid[0][0];
-    end = grid[cols - 1][rows - 1];
-
-    startSearchButton = createButton('Start search');
-    startSearchButton.position(50, 25);
-    // startSearchButton.mouseClicked(startSearch);
 }
 
 function draw() {
-    background(200);
+    background(255);
 
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
@@ -45,11 +36,16 @@ function draw() {
     }
 
     current.visited = true;
+    current.highlight();
+
     let next = current.getUnvisitedNeighbor();
     if (next) {
         next.visited = true;
+        stack.push(current);
         current.removeWalls(next);
         current = next;
+    } else if (stack.length > 0) {
+        current = stack.pop();
     }
 }
 
