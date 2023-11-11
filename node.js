@@ -9,23 +9,29 @@ class Node {
     show() {
         let i = this.i * w;
         let j = this.j * h;
-        stroke(255);
+        let offset = 1;
+        stroke(0);
         strokeWeight(1);
 
         if (this.walls[0]) {
-            line(i    , j,     i + w, j);
+            // stroke(255, 0, 0);
+            line(i + offset   , j + offset,     i + w - offset, j + offset);
         }
         if (this.walls[1]) {
-            line(i + w, j,     i + w, j + h);
+            // stroke(0, 255, 0);
+            line(i + w - offset, j + offset,     i + w - offset, j + h - offset);
         }
         if (this.walls[2]) {
-            line(i + w, j + h, i    , j + h);
+            // stroke(0, 0, 255);
+            line(i + w - offset, j + h - offset, i + offset   , j + h - offset);
         }
         if (this.walls[3]) {
-            line(i    , j + h, i    , j);
+            // stroke(255, 255, 255);
+            line(i + offset   , j + h - offset, i + offset   , j + offset);
         }
 
         if (this.visited) {
+            noStroke();
             fill(255, 0, 255, 80);
             rect(this.i * w, this.j * h, w, h);
         }
