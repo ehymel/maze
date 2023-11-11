@@ -1,6 +1,7 @@
 let cols = 10;
 let rows = 10;
 let grid = [];
+let current;
 let start, end;
 let w, h;
 let search = false;
@@ -23,6 +24,8 @@ function setup() {
         }
     }
 
+    current = grid[0][0];
+
     // set start and end nodes
     start = grid[0][0];
     end = grid[cols - 1][rows - 1];
@@ -37,8 +40,16 @@ function draw() {
 
     for (let i = 0; i < cols; i++) {
         for (let j = 0; j < rows; j++) {
-            grid[i][j].show(color(255));
+            grid[i][j].show();
         }
     }
 
+    current.visited = true;
+    let next = current.getUnvisitedNeighbor();
+    if (next) {
+        next.visited = true;
+        current.removeWalls(next);
+        current = next;
+    }
 }
+
