@@ -14,19 +14,15 @@ class Node {
         strokeWeight(1);
 
         if (this.walls[0]) {
-            // stroke(255, 0, 0);
             line(i + offset   , j + offset,     i + w - offset, j + offset);
         }
         if (this.walls[1]) {
-            // stroke(0, 255, 0);
             line(i + w - offset, j + offset,     i + w - offset, j + h - offset);
         }
         if (this.walls[2]) {
-            // stroke(0, 0, 255);
             line(i + w - offset, j + h - offset, i + offset   , j + h - offset);
         }
         if (this.walls[3]) {
-            // stroke(255, 255, 255);
             line(i + offset   , j + h - offset, i + offset   , j + offset);
         }
 

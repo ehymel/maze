@@ -2,8 +2,8 @@ let cols = 30;
 let rows = 30;
 let grid = [];
 let current;
+let maze;
 let w, h;
-let stack = [];
 
 function setup() {
     createCanvas(400, 400);
@@ -24,6 +24,7 @@ function setup() {
     }
 
     current = grid[0][0];
+    maze = new Maze(current);
 }
 
 function draw() {
@@ -35,17 +36,7 @@ function draw() {
         }
     }
 
-    current.visited = true;
-    current.highlight();
-
-    let next = current.getUnvisitedNeighbor();
-    if (next) {
-        next.visited = true;
-        stack.push(current);
-        current.removeWalls(next);
-        current = next;
-    } else if (stack.length > 0) {
-        current = stack.pop();
-    }
+    maze.generate();
+    maze.current.highlight();
 }
 
