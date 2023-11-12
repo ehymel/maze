@@ -7,6 +7,10 @@ class Node {
     }
 
     show() {
+        if (!this.visited) {
+            return;
+        }
+
         let i = this.i * w;
         let j = this.j * h;
         let offset = 0;
@@ -26,11 +30,9 @@ class Node {
             line(i + offset   , j + h - offset, i + offset   , j + offset);
         }
 
-        if (this.visited) {
-            noStroke();
-            fill(255, 0, 255, 80);
-            rect(this.i * w, this.j * h, w, h);
-        }
+        noStroke();
+        fill(255, 0, 255, 80);
+        rect(this.i * w, this.j * h, w, h);
     }
 
     highlight() {
